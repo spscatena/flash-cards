@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  question: MyText
+  answer: MyText
+  answer_notes: MyText
+  learned: false
+  subjects: one
+
+two:
+  title: MyString
+  question: MyText
+  answer: MyText
+  answer_notes: MyText
+  learned: false
+  subjects: two
