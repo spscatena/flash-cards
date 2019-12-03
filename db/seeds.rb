@@ -8,7 +8,7 @@
 
 
 u1 = User.create(username: 'sabrina', password_digest: 'sabrina')
-u2 = User.create(username: 'ryan', password_digest: 'ryan')
+u2 = User.create(username: 'ryanrc', password_digest: 'ryryanrcan')
 
 s1 = u1.subjects.create(title: "Math", description: 'Fractions')
 s2 = u1.subjects.create(title: "Science", description: 'Biology of plants')
