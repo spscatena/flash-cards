@@ -1,16 +1,19 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :update, :destroy]
 
-  # GET /subjects
+  # GET /users/<user_id>/subjects
   def index
-    @subjects = Subject.all
-
-    render json: @subjects
+    @user = User.find(params[:user_id])
+    @subjects = Subject.where(user_id: @user.id)
+    render json: @subjects, include: :user, status: :ok
   end
 
-  # GET /subjects/1
+  # GET /users/<user_id>/subjects/<subject_id>
   def show
-    render json: @subject
+    @user = User.find(params[:user_id])
+    @subject = Subject.find(params[:id])
+    @cards = Card.where(subject_id: @subject.id)
+    render json: @subject, include: [:cards, :user], status: :ok
   end
 
   # POST /subjects
@@ -26,8 +29,9 @@ class SubjectsController < ApplicationController
 
   # PATCH/PUT /subjects/1
   def update
+    @subject = Subject.find(params[:id])
     if @subject.update(subject_params)
-      render json: @subject
+      render json: @subject, status: :ok
     else
       render json: @subject.errors, status: :unprocessable_entity
     end
@@ -35,6 +39,7 @@ class SubjectsController < ApplicationController
 
   # DELETE /subjects/1
   def destroy
+    @subject = Subject.find(params[:id])
     @subject.destroy
   end
 
@@ -46,6 +51,6 @@ class SubjectsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def subject_params
-      params.require(:subject).permit(:title, :description, :users_id)
+      params.require(:subject).permit(:title, :description, :user_id)
     end
 end

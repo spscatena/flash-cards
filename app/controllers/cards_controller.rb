@@ -3,13 +3,15 @@ class CardsController < ApplicationController
 
   # GET /cards
   def index
-    @cards = Card.all
-
+    @subject = Subject.find(params[:subject_id])
+    @cards = Card.where(subject_id: @subject.id)
     render json: @cards
   end
 
   # GET /cards/1
   def show
+    @subject = Subject.find(params[:subject_id])
+    @card = Card.find(params[:id])
     render json: @card
   end
 
