@@ -7,7 +7,9 @@ const Login = (props) => {
 
   return (
     <div className="auth-container">
-      <h2>login</h2>
+      <div className="auth-form">
+      <h2>Login</h2>
+      Don't have an account yet?Register <Link to="/register">here!</Link>
       <hr />
       <form onSubmit={(e) => {
         e.preventDefault();
@@ -19,8 +21,8 @@ const Login = (props) => {
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
         <hr />
         <button>Login</button>
-        <Link to="/register">Register</Link>
-      </form>
+        </form>
+        </div>
     </div>
   );
 }

@@ -6,15 +6,12 @@ export default function Header(props) {
     <header>
       <h1><Link to='/' onClick={props.resetForm}>Flashcards</Link></h1>
       <div>
-        {props.currentUser
-          ?
-          <>
+        
+          
             <p>{props.currentUser.username}</p>
             <button onClick={props.handleLogout}>logout</button>
-          </>
-          :
-          <button onClick={props.handleLoginButton}>Login/register</button>
-        }
+          
+          
       </div>
     </header>
   )

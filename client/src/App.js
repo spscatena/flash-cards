@@ -12,7 +12,9 @@ import {
   // createComment,
   // readAllComments,
   // updateComment,
-  // destroyComment,
+  destroySubject,
+  readAllSubjects,
+  createSubject,
   loginUser,
   registerUser,
   verifyUser
@@ -20,6 +22,7 @@ import {
 
 import './App.css';
 import Header from './components/Header';
+import Subjects from './components/Subjects';
 
 class App extends Component {
   constructor(props) {
@@ -35,24 +38,36 @@ class App extends Component {
       authFormData: {
         username: "",
         password: ""
-      }
-    };
+      },
+      subjectData: {
+        title: "",
+        description: ""
+      },
+      subjects: []
+    }
+      ;
   }
 
   async componentDidMount() {
-    // this.getComments();
+
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
+      this.getSubjects();
+    } else {
+      this.props.history.push("/login")
     }
   }
 
-  // getComments = async () => {
-  //   const comments = await readAllComments();
-  //   this.setState({
-  //     comments
-  //   })
-  // }
+  getSubjects = async () => {
+    const subjects = await readAllSubjects(this.state.currentUser.id)
+    this.setState({
+      subjects
+    })
+    this.props.history.push("/subjects")
+  }
+
+
 
   // newComment = async (e) => {
   //   e.preventDefault();
@@ -67,6 +82,7 @@ class App extends Component {
   //   }))
   // }
 
+
   // editComment = async () => {
   //   const { commentForm } = this.state
   //   await updateComment(commentForm.id, commentForm);
@@ -79,22 +95,15 @@ class App extends Component {
   //   ))
   // }
 
-  // deleteComment = async (id) => {
-  //   await destroyComment(id);
-  //   this.setState(prevState => ({
-  //     comments: prevState.comments.filter(comment => comment.id !== id)
-  //   }))
-  // }
+  handleSubjectDelete = async (id) => {
 
-  // handleFormChange = (e) => {
-  //   const { name, value } = e.target;
-  //   this.setState(prevState => ({
-  //     commentForm: {
-  //       ...prevState.commentForm,
-  //       [name]: value
-  //     }
-  //   }))
-  // }
+    await destroySubject(id);
+    this.setState(prevState => ({
+      subjects: prevState.subjects.filter(subject => subject.id !== parseInt(id))
+    }))
+  }
+
+
 
   // mountEditForm = async (id) => {
   //   const comments = await readAllComments();
@@ -114,61 +123,127 @@ class App extends Component {
   //   })
 
 
-// -------------- AUTH ------------------
+  // -------------- AUTH ------------------
 
-handleLoginButton = () => {
-  this.props.history.push("/login")
-}
+  handleLoginButton = () => {
+    this.props.history.push("/login")
+  }
 
-handleLogin = async () => {
-  const currentUser = await loginUser(this.state.authFormData);
-  this.setState({ currentUser });
-}
+  handleRegisterButton = () => {
+    this.props.history.push("/register")
+  }
 
-handleRegister = async (e) => {
-  e.preventDefault();
-  const currentUser = await registerUser(this.state.authFormData);
-  this.setState({ currentUser });
-}
 
-handleLogout = () => {
-  localStorage.removeItem("jwt");
-  this.setState({
-    currentUser: null
-  })
-}
+  handleLogin = async () => {
+    const currentUser = await loginUser(this.state.authFormData);
+    this.setState({
+      currentUser,
+      authFormData: {
+        username: "",
+        password: ""
+      }
+    });
+    this.getSubjects();
+  }
 
-authHandleChange = (e) => {
-  const { name, value } = e.target;
-  this.setState(prevState => ({
-    authFormData: {
-      ...prevState.authFormData,
-      [name]: value
-    }
-  }));
-}
+  handleSubjectSubmit = async () => {
+    const subject = await createSubject(this.state.subjectData)
+    this.setState(prevState => ({
+      subjects: [...prevState.subjects, subject],
+      subjectData: {
+        title: "",
+        description: ''
+      }
+    }));
 
-render() {
-  return (
-    <div className="App" >
-      <Header
-        handleLoginButton={this.handleLoginButton}
-        handleLogout={this.handleLogout}
-        currentUser={this.state.currentUser}
-      />
-      <Route exact path="/login" render={() => (
-        <Login
-          handleLogin={this.handleLogin}
-          handleChange={this.authHandleChange}
-          formData={this.state.authFormData} />)} />
+  }
 
-      <Route exact path="/register" render={() => (
-        <Register
-          handleRegister={this.handleRegister}
-          handleChange={this.authHandleChange}
-          formData={this.state.authFormData} />)} />
+  handleRegister = async (e) => {
+    e.preventDefault();
+    const currentUser = await registerUser(this.state.authFormData);
+    this.setState({
+      currentUser,
+      authFormData: {
+        username: "",
+        password: ""
+      }
+    });
+  }
 
-      {/* <Route exact path="/"render={() => (
+  handleLogout = () => {
+
+    localStorage.removeItem("authToken");
+    this.setState({
+      currentUser: null
+    })
+    this.props.history.push("/login")
+  }
+
+  authHandleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      authFormData: {
+        ...prevState.authFormData,
+        [name]: value
+      }
+    }));
+  }
+
+  handleSubjectChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      subjectData: {
+        ...prevState.subjectData,
+        [name]: value
+      }
+    }))
+  }
+  render() {
+    return (
+      <div className="App" >
+        {this.state.currentUser &&
+          <>
+            <Header
+              handleLoginButton={this.handleLoginButton}
+              handleRegisterButton={this.handleRegisterButton}
+              handleLogout={this.handleLogout}
+              currentUser={this.state.currentUser}
+            />
+            <Route exact path="/subjects" render={(props) => (
+              <Subjects
+                subjects={this.state.subjects}
+                handleSubjectDelete={this.handleSubjectDelete}
+                handleSubjectSubmit={this.handleSubjectSubmit}
+                subjectData={this.state.subjectData}
+                handleChange={this.handleSubjectChange}
+              />
+            )}
+            />
+          </>
+
+
+        }
+        {!this.state.currentUser &&
+          <>
+            <Route exact path="/login" render={() => (
+              <Login
+                handleLogin={this.handleLogin}
+                handleChange={this.authHandleChange}
+                formData={this.state.authFormData}
+                handleRegisterButton={this.handleRegisterButton}
+              />)} />
+
+            <Route exact path="/register" render={() => (
+              <Register
+                handleRegister={this.handleRegister}
+                handleChange={this.authHandleChange}
+                formData={this.state.authFormData}
+                handleLoginButton={this.handleLoginButton}
+              />)} />
+          </>
+        }
+
+        {/* <Route exact path="/"render={() => (
             <CommentsView
               comments={this.state.comments}
               commentForm={this.state.commentForm}
@@ -177,14 +252,14 @@ render() {
           )}
         /> */}
 
-      {/* <Route path="/new/comment" render={() => (
+        {/* <Route path="/new/comment" render={() => (
             <CreateComment
               handleFormChange={this.handleFormChange}
               commentForm={this.state.commentForm}
               newComment={this.newComment} />
         )} /> */}
 
-      {/* <Route path="/comments/:id" render={(props) => {
+        {/* <Route path="/comments/:id" render={(props) => {
             const { id } = props.match.params;
             const comment = this.state.comments.find(el => el.id === parseInt(id));
             return <CommentPage
@@ -197,9 +272,9 @@ render() {
               deleteComment={this.deleteComment} />
           }}
         /> */}
-    </div>
-  );
-}
+      </div>
+    );
+  }
 }
 
 
