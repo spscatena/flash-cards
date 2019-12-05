@@ -11,3 +11,30 @@ body {
 .auth-form {
   background: white;
 }
+
+#subject-card {
+  border: 2px solid blue;
+  width: 30vw;
+  height: 10vw;
+  margin: 0 auto;
+
+}
+
+#subject-container {
+  margin-top: 3vh;
+  /* height: auto; */
+  border: 2px solid orange;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 3vh;
+}
+
+/* #employee-list {
+
+  width: 90%;
+  margin: auto ;
+  align-items: center;
+  row-gap: 50px;
+  margin-top: 40px;
+
+} */
