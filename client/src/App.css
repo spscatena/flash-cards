@@ -32,12 +32,14 @@ body {
   grid-row-gap: 3vh;
 }
 
-/* #employee-list {
+button {
+  color: black;
+  width: 50px;
+  border-radius: 3px;
+  margin: 3px;
+}
 
-  width: 90%;
-  margin: auto ;
-  align-items: center;
-  row-gap: 50px;
-  margin-top: 40px;
 
-} */
+a {
+text-decoration: none;
+}

@@ -27,8 +27,8 @@ export default class Subjects extends Component {
               <p>Subject: {subject.title}</p>
               <p>Description: {subject.description}</p>
               <button onClick={() => this.props.handleSubjectDelete(subject.id)}>Delete</button>
-              <Link to={`/subjects/${subject.id}/edit`} >Edit </Link>
-              {/* <Link to={`/cards/${card.id}/`} >Cards</Link> */}
+              <button><Link to={`/subjects/${subject.id}/edit`}>Edit</Link></button>
+              <button><Link to={`/subjects/${subject.id}/cards`}>Cards</Link></button>
 
             </div>))}
         </div>

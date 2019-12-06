@@ -55,25 +55,25 @@ export const destroySubject = async (id) => {
 }
 
 
-// // -------------Cards---------------------
+// -------------Cards---------------------
 
 
-// export const createCard = async (data) => {
-//   const resp = await api.post('/cards', { subject: data })
-//   return resp.data
-// }
+export const createCard = async (data) => {
+  const resp = await api.post('/cards', { card: data })
+  return resp.data
+}
 
-// export const readAllSubjects = async () => {
-//   const resp = await api.get('/cards')
-//   return resp.data
-// }
+export const readAllCards = async () => {
+  const resp = await api.get('/cards')
+  return resp.data
+}
 
-// export const updateSubjects = async (id, data) => {
-//   const resp = await api.put(`/cards/${id}`, { teacher: data })
-//   return resp.data
-// }
+export const updateCard = async (id, data) => {
+  const resp = await api.put(`/cards/${id}`, data )
+  return resp.data
+}
 
-// export const destroySubjects = async (id) => {
-//   const resp = await api.delete(`/cards/${id}`)
-//   return resp.data
-// }
+export const destroyCard = async (id) => {
+  const resp = await api.delete(`/cards/${id}`)
+  return resp.data
+}

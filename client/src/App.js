@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
-
-// import CommentsView from './components/CommentsView';
-// import CommentPage from './components/CommentPage';
-// import CreateComment from './components/CreateComment'
 import Login from './components/Login'
 import Register from './components/Register'
+import Cards from './components/Cards'
 
 import {
-  // createComment,
-  // readAllComments,
+  createCard,
+  readAllCards,
+  updateCard,
+  destroyCard,
   putSubject,
   destroySubject,
   readAllSubjects,
@@ -30,11 +29,7 @@ class App extends Component {
     super(props);
     this.state = {
       // comments: [],
-      // commentForm: {
-      //   content: "",
-      //   hashtag: "",
-      //   title: ""
-      // },
+
       currentUser: null,
       authFormData: {
         username: "",
@@ -48,7 +43,17 @@ class App extends Component {
         title: "",
         description: ""
       },
-      subjects: []
+      createCardData: {
+        question: "",
+        answer: ""
+      },
+      editCardData: {
+        queston: "",
+        answer: ""
+      },
+
+      subjects: [],
+      cards: []
     }
       ;
   }
@@ -73,60 +78,54 @@ class App extends Component {
   }
 
 
+  getCards = async () => {
+    const cards = await readAllCards(this.state.currentUser.id)
+    this.setState({
+      cards
+    })
+    this.props.history.push("/cards")
+  }
 
-  // newComment = async (e) => {
-  //   e.preventDefault();
-  //   const comment = await createComment(this.state.commentForm);
-  //   this.setState(prevState => ({
-  //     comments: [...prevState.comments, comment],
-  //     commentForm: {
-  //       content: "",
-  //       hashtag: "",
-  //       title: ""
-  //     }
-  //   }))
-  // }
-
-
-  // editComment = async () => {
-  //   const { commentForm } = this.state
-  //   await updateComment(commentForm.id, commentForm);
-  //   this.setState(prevState => (
-  //     {
-  //       comments: prevState.comments.map(comment => {
-  //         return comment.id === commentForm.id ? commentForm : comment
-  //       }),
-  //     }
-  //   ))
-  // }
 
   handleSubjectDelete = async (id) => {
-
     await destroySubject(id);
     this.setState(prevState => ({
       subjects: prevState.subjects.filter(subject => subject.id !== parseInt(id))
     }))
   }
 
+
+  handleCardDelete = async (id) => {
+    await destroyCard(id);
+    this.setState(prevState => ({
+      cards: prevState.cards.filter(card => card.id !== parseInt(id))
+    }))
+  }
+
+  // when the submit button is pressed
   handleEditSubmit = async (id) => {
     const updatedSubject = await putSubject(id, this.state.editSubjectData);
-    debugger;
     this.setState(prevState => ({
       subjects: prevState.subjects.map(subject => {
         return subject.id === parseInt(id) ? updatedSubject : subject
       })
-      // ,
-      // subjectData: {
-      //   title: "",
-      //   description: ''
-      // }
-
     }));
-    // this.resetForm();
     this.props.history.push(`/subjects`);
   }
 
+  handleCardEditSubmit = async (id) => {
+    const updatedCard = await updateCard(id, this.state.editCardData);
+    this.setState(prevState => ({
+      cards: prevState.cards.map(card => {
+        return card.id === parseInt(id) ? updatedCard : card
+      })
+    }));
+    this.props.history.push(`/cards`);
+  }
 
+
+
+  // Create subject
   handleSubjectSubmit = async () => {
     const subject = await createSubject(this.state.createSubjectData)
     this.setState(prevState => ({
@@ -138,6 +137,19 @@ class App extends Component {
     }));
   }
 
+  //Create card
+  handleCardSubmit = async () => {
+    const card = await createCard(this.state.createCardData)
+    this.setState(prevState => ({
+      cards: [...prevState.cards, card],
+      createCardData: {
+        title: "",
+        description: ''
+      }
+    }));
+  }
+
+
 
   mountEditForm = async (id) => {
     const subjects = await readAllSubjects();
@@ -147,17 +159,15 @@ class App extends Component {
     });
   }
 
+  mountCardEditForm = async (id) => {
+    const cards = await readAllCards();
+    const card = cards.find(el => el.id === parseInt(id));
+    this.setState({
+      editCardData: card
+    });
+  }
 
 
-  // resetForm = () => {
-  //   debugger
-  //   this.setState({
-  //     subjectData: {
-  //       title: "",
-  //       description: ""
-  //     }
-  //   })
-  // }
 
 
   // -------------- AUTH ------------------
@@ -216,6 +226,9 @@ class App extends Component {
     }));
   }
 
+
+  // MOVE THIS TO THE ABOVE? MAKE SURE. 
+
   handleCreateSubjectChange = async (ev) => {
     const { name, value } = ev.target
     this.setState(prevState => ({
@@ -235,16 +248,6 @@ class App extends Component {
       }
     }))
   }
-
-  // handleSubjectEditChange = async (ev) => {
-  //   const { name, value } = ev.target
-  //   this.setState(prevState => ({
-  //     subjectData: {
-  //       ...prevState.subjectData,
-  //       [name]: value
-  //     }
-  //   }))
-  // }
 
 
   render() {
@@ -278,6 +281,16 @@ class App extends Component {
               />
             }}
             />
+            <Route exact path="/subjects/:id/cards" render={(props) => (
+              <Cards
+                cards={this.state.cards}
+                handleCardDelete={this.handleCardDelete}
+                handleCardSubmit={this.handleCardSubmit}
+                createCardData={this.state.createCardData}
+                handleChange={this.handleCreateCardChange}
+              />
+            )} />
+
           </>
 
 
