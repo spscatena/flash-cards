@@ -35,21 +35,19 @@ export const verifyUser = async () => {
 // // -------------Subjects---------------------
 
 export const createSubject = async (data) => {
-
   const resp = await api.post('/subjects', data)
   return resp.data
 }
 
 export const readAllSubjects = async (id) => {
-  
   const resp = await api.get(`/subjects`)
   return resp.data
 }
 
-// export const updateSubjects = async (id, data) => {
-//   const resp = await api.put(`/subjects/${id}`, { teacher: data })
-//   return resp.data
-// }
+export const putSubject = async (id, data) => {
+  const resp = await api.put(`/subjects/${id}`, data)
+  return resp.data
+}
 
 export const destroySubject = async (id) => {
   const resp = await api.delete(`/subjects/${id}`)

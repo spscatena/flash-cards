@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import SubjectCreate from "./SubjectCreate"
+import { Link } from 'react-router-dom';
+
 
 export default class Subjects extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Subjects extends Component {
           handleChange={this.props.handleChange}
           handleSubjectSubmit={this.props.handleSubjectSubmit}
           subjectData={this.props.subjectData}
+        // handleEditSubject={this.props.handleEditSubject}
         />
 
         <div id="subject-container">
@@ -25,6 +28,8 @@ export default class Subjects extends Component {
               <p>{subject.title}</p>
               <p>{subject.description}</p>
               <button onClick={() => this.props.handleSubjectDelete(subject.id)}>Delete</button>
+              <Link to={`/subjects/${subject.id}/edit`} >Edit </Link>
+              {/* // <button onClick={() => this.props.handleEditSubject(subject.id)}>Edit</button> */}
             </div>))}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 // import CommentsView from './components/CommentsView';
@@ -11,7 +11,7 @@ import Register from './components/Register'
 import {
   // createComment,
   // readAllComments,
-  // updateComment,
+  putSubject,
   destroySubject,
   readAllSubjects,
   createSubject,
@@ -23,6 +23,7 @@ import {
 import './App.css';
 import Header from './components/Header';
 import Subjects from './components/Subjects';
+import EditSubject from './components/EditSubject';
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,11 @@ class App extends Component {
         username: "",
         password: ""
       },
-      subjectData: {
+      editSubjectData: {
+        title: "",
+        description: ""
+      },
+      createSubjectData: {
         title: "",
         description: ""
       },
@@ -103,24 +108,56 @@ class App extends Component {
     }))
   }
 
+  handleEditSubmit = async (id) => {
+    const updatedSubject = await putSubject(id, this.state.editSubjectData);
+    debugger;
+    this.setState(prevState => ({
+      subjects: prevState.subjects.map(subject => {
+        return subject.id === parseInt(id) ? updatedSubject : subject
+      })
+      // ,
+      // subjectData: {
+      //   title: "",
+      //   description: ''
+      // }
+
+    }));
+    // this.resetForm();
+    this.props.history.push(`/subjects`);
+  }
 
 
-  // mountEditForm = async (id) => {
-  //   const comments = await readAllComments();
-  //   const comment = comments.find(el => el.id === parseInt(id));
-  //   this.setState({
-  //     commentForm: comment
-  //   });
-  // }
+  handleSubjectSubmit = async () => {
+    const subject = await createSubject(this.state.createSubjectData)
+    this.setState(prevState => ({
+      subjects: [...prevState.subjects, subject],
+      createSubjectData: {
+        title: "",
+        description: ''
+      }
+    }));
+  }
+
+
+  mountEditForm = async (id) => {
+    const subjects = await readAllSubjects();
+    const subject = subjects.find(el => el.id === parseInt(id));
+    this.setState({
+      editSubjectData: subject
+    });
+  }
+
+
 
   // resetForm = () => {
+  //   debugger
   //   this.setState({
-  //     commentForm: {
-  //       content: "",
-  //       hashtag: "",
-  //       title: ""
+  //     subjectData: {
+  //       title: "",
+  //       description: ""
   //     }
   //   })
+  // }
 
 
   // -------------- AUTH ------------------
@@ -146,17 +183,7 @@ class App extends Component {
     this.getSubjects();
   }
 
-  handleSubjectSubmit = async () => {
-    const subject = await createSubject(this.state.subjectData)
-    this.setState(prevState => ({
-      subjects: [...prevState.subjects, subject],
-      subjectData: {
-        title: "",
-        description: ''
-      }
-    }));
 
-  }
 
   handleRegister = async (e) => {
     e.preventDefault();
@@ -189,15 +216,37 @@ class App extends Component {
     }));
   }
 
-  handleSubjectChange = async (ev) => {
+  handleCreateSubjectChange = async (ev) => {
     const { name, value } = ev.target
     this.setState(prevState => ({
-      subjectData: {
-        ...prevState.subjectData,
+      createSubjectData: {
+        ...prevState.createSubjectData,
         [name]: value
       }
     }))
   }
+
+  handleEditSubjectChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      editSubjectData: {
+        ...prevState.editSubjectData,
+        [name]: value
+      }
+    }))
+  }
+
+  // handleSubjectEditChange = async (ev) => {
+  //   const { name, value } = ev.target
+  //   this.setState(prevState => ({
+  //     subjectData: {
+  //       ...prevState.subjectData,
+  //       [name]: value
+  //     }
+  //   }))
+  // }
+
+
   render() {
     return (
       <div className="App" >
@@ -214,10 +263,20 @@ class App extends Component {
                 subjects={this.state.subjects}
                 handleSubjectDelete={this.handleSubjectDelete}
                 handleSubjectSubmit={this.handleSubjectSubmit}
-                subjectData={this.state.subjectData}
-                handleChange={this.handleSubjectChange}
+                subjectData={this.state.createSubjectData}
+                handleChange={this.handleCreateSubjectChange}
               />
-            )}
+            )} />
+            <Route exact path="/subjects/:id/edit" render={(props) => {
+              const subjectId = props.match.params.id
+              return <EditSubject
+                subjectId={subjectId}
+                subjectData={this.state.editSubjectData}
+                handleChange={this.handleEditSubjectChange}
+                handleEditSubmit={this.handleEditSubmit}
+                mountEditForm={this.mountEditForm}
+              />
+            }}
             />
           </>
 
