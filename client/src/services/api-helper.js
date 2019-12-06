@@ -1,6 +1,10 @@
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:3000'
+// const baseUrl = 'https://flash-cards-api-ss.herokuapp.com/'
+
+// https://flash-cards-api-ss.herokuapp.com/subjects
+// https://flash-cards-api-ss.herokuapp.com/
 
 const api = axios.create({
   baseURL: baseUrl
@@ -69,7 +73,7 @@ export const readAllCards = async () => {
 }
 
 export const updateCard = async (id, data) => {
-  const resp = await api.put(`/cards/${id}`, data )
+  const resp = await api.put(`/cards/${id}`, data)
   return resp.data
 }
 
