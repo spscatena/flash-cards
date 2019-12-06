@@ -18,6 +18,7 @@ export default class Cards extends Component {
           handleChange={this.props.handleChange}
           handleCardSubmit={this.props.handleCardSubmit}
           createCardData={this.props.createCardData}
+          subjectId={this.props.subjectId}
         />
 
         <div id="card-container">
