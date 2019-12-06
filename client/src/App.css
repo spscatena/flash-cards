@@ -2,18 +2,21 @@ body {
   text-align: center;
 }
 
-
 .auth-container{
-  background: blue;
+  background: white;
   height: 100vh;
+  display: flex;
 }
 
 .auth-form {
   background: white;
+  width: 30%;
+  border: 5px solid black;
+  margin: auto;
 }
 
 #subject-card {
-  border: 2px solid blue;
+  border: 2px solid black;
   width: 30vw;
   height: 10vw;
   margin: 0 auto;
@@ -23,7 +26,7 @@ body {
 #subject-container {
   margin-top: 3vh;
   /* height: auto; */
-  border: 2px solid orange;
+  /* border: 2px solid orange; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 3vh;

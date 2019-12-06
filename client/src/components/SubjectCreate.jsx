@@ -15,14 +15,14 @@ export default function SubjectCreate(props) {
           name="title"
           placeholder="Subject Title"
           id="title"
-          value={props.subjectData.title}
+          value={props.createSubjectData.title}
         />
         <input type="text"
           onChange={props.handleChange}
           name="description"
           placeholder="Subject Description"
           id="description"
-          value={props.subjectData.description}
+          value={props.createSubjectData.description}
         />
         <input type="submit" value="Add Subject" />
       </form>

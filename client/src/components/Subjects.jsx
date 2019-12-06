@@ -17,19 +17,19 @@ export default class Subjects extends Component {
         <SubjectCreate
           handleChange={this.props.handleChange}
           handleSubjectSubmit={this.props.handleSubjectSubmit}
-          subjectData={this.props.subjectData}
-        // handleEditSubject={this.props.handleEditSubject}
+          createSubjectData={this.props.createSubjectData}
         />
 
         <div id="subject-container">
           {this.props.subjects.map(subject => (
 
             <div id="subject-card" key={subject.id}>
-              <p>{subject.title}</p>
-              <p>{subject.description}</p>
+              <p>Subject: {subject.title}</p>
+              <p>Description: {subject.description}</p>
               <button onClick={() => this.props.handleSubjectDelete(subject.id)}>Delete</button>
               <Link to={`/subjects/${subject.id}/edit`} >Edit </Link>
-              {/* // <button onClick={() => this.props.handleEditSubject(subject.id)}>Edit</button> */}
+              {/* <Link to={`/cards/${card.id}/`} >Cards</Link> */}
+
             </div>))}
         </div>
       </div>

@@ -263,7 +263,7 @@ class App extends Component {
                 subjects={this.state.subjects}
                 handleSubjectDelete={this.handleSubjectDelete}
                 handleSubjectSubmit={this.handleSubjectSubmit}
-                subjectData={this.state.createSubjectData}
+                createSubjectData={this.state.createSubjectData}
                 handleChange={this.handleCreateSubjectChange}
               />
             )} />
@@ -271,7 +271,7 @@ class App extends Component {
               const subjectId = props.match.params.id
               return <EditSubject
                 subjectId={subjectId}
-                subjectData={this.state.editSubjectData}
+                editSubjectData={this.state.editSubjectData}
                 handleChange={this.handleEditSubjectChange}
                 handleEditSubmit={this.handleEditSubmit}
                 mountEditForm={this.mountEditForm}

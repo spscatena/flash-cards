@@ -9,8 +9,7 @@ const Login = (props) => {
     <div className="auth-container">
       <div className="auth-form">
       <h2>Login</h2>
-      Don't have an account yet?Register <Link to="/register">here!</Link>
-      <hr />
+      {/* <hr /> */}
       <form onSubmit={(e) => {
         e.preventDefault();
         props.handleLogin();
@@ -19,8 +18,9 @@ const Login = (props) => {
         <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
         <p>Password:</p>
         <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <hr />
+        {/* <hr /> */}
         <button>Login</button>
+      <p>Don't have an account yet? Register <Link to="/register">here!</Link></p>
         </form>
         </div>
     </div>

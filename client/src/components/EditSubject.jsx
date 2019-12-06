@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function EditSubject(props) {
-  if (props.subjectData.id !== parseInt(props.subjectId)) {
+  if (props.editSubjectData.id !== parseInt(props.subjectId)) {
     props.mountEditForm(props.subjectId)
   }
 
@@ -16,7 +16,7 @@ export default function EditSubject(props) {
           type="text"
           name="title"
           id="title"
-          value={props.subjectData.title}
+          value={props.editSubjectData.title}
           onChange={props.handleChange}
         />
         <br />
@@ -25,7 +25,7 @@ export default function EditSubject(props) {
           type="text"
           name="description"
           id="description"
-          value={props.subjectData.description}
+          value={props.editSubjectData.description}
           onChange={props.handleChange}
         />
         <br />
