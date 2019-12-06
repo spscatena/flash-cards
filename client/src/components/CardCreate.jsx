@@ -12,17 +12,17 @@ export default function CardCreate(props) {
         <input
           type="text"
           onChange={props.handleChange}
-          name="title"
-          placeholder="Card Title"
-          id="title"
-          value={props.createCardData.title}
+          name="question"
+          placeholder="Card Question"
+          id="question"
+          value={props.createCardData.question}
         />
         <input type="text"
           onChange={props.handleChange}
-          name="description"
-          placeholder="Card Description"
-          id="description"
-          value={props.createCardData.description}
+          name="answer"
+          placeholder="Card Answer"
+          id="answer"
+          value={props.createCardData.answer}
         />
         <input type="submit" value="Add Card" />
       </form>

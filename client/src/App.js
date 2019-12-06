@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Cards from './components/Cards'
 
+
 import {
   createCard,
   readAllCards,
@@ -23,6 +24,7 @@ import './App.css';
 import Header from './components/Header';
 import Subjects from './components/Subjects';
 import EditSubject from './components/EditSubject';
+import EditCard from './components/EditCard'
 
 class App extends Component {
   constructor(props) {
@@ -132,7 +134,7 @@ class App extends Component {
       subjects: [...prevState.subjects, subject],
       createSubjectData: {
         title: "",
-        description: ''
+        description: ""
       }
     }));
   }
@@ -143,8 +145,8 @@ class App extends Component {
     this.setState(prevState => ({
       cards: [...prevState.cards, card],
       createCardData: {
-        title: "",
-        description: ''
+        question: "",
+        answer: ""
       }
     }));
   }
@@ -290,6 +292,17 @@ class App extends Component {
                 handleChange={this.handleCreateCardChange}
               />
             )} />
+            <Route exact path="/subjects/:id/cards/:id/edit" render={(props) => {
+              const cardId = props.match.params.id
+              return <EditCard
+                subjectId={cardId}
+                editCardData={this.state.editCardData}
+                handleChange={this.handleEditCardChange}
+                handleEditSubmit={this.handleCardEditSubmit}
+                mountEditForm={this.mountCardEditForm}
+              />
+            }}
+            />
 
           </>
 
