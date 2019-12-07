@@ -15,12 +15,12 @@ class CardsController < ApplicationController
     render json: @card
   end
 
-  # POST /cards
   def create
-    # @subject = Subject.find(params[:subject_id])
     @card = Card.new(card_params)
+    @subject = Subject.find(params[:subject_id])
+    @card.subject = @subject
+
     if @card.save
-      @subject.cards << @card
       render json: @card, status: :created
     else
       render json: @card.errors, status: :unprocessable_entity

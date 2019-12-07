@@ -58,9 +58,9 @@ export const destroySubject = async (id) => {
 // -------------Cards---------------------
 
 
-export const createCard = async (id, data) => {
-  debugger;
-  const resp = await api.post(`subjects/${id}/cards`, data)
+export const createCard = async (subject_id, data) => {
+  // debugger;
+  const resp = await api.post(`subjects/${subject_id}/cards`, data)
   return resp.data
 }
 
