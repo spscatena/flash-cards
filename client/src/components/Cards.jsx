@@ -25,8 +25,10 @@ export default class Cards extends Component {
           {this.props.cards.map(card => (
 
             <div id="card" key={card.id}>
-              <p>Card Title: {card.question}</p>
-              <p>Description: {card.answer}</p>
+              <p>Title: {card.title}</p>
+              <p>Question: {card.question}</p>
+              <p>Answer: {card.answer}</p>
+              <p>Answer Notes {card.answer_notes}</p>
               <button onClick={() => this.props.handleCardDelete(card.id)}>Delete</button>
               <Link to={`/cards/${card.id}/edit`}>Edit </Link>
             </div>))}
