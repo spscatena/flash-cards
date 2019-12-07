@@ -15,12 +15,13 @@ class CardsController < ApplicationController
     render json: @card
   end
 
-  # POST /cards
   def create
     @card = Card.new(card_params)
+    @subject = Subject.find(params[:subject_id])
+    @card.subject = @subject
 
     if @card.save
-      render json: @card, status: :created, location: @card
+      render json: @card, status: :created
     else
       render json: @card.errors, status: :unprocessable_entity
     end
@@ -48,6 +49,8 @@ class CardsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def card_params
-      params.require(:card).permit(:title, :question, :answer, :answer_notes, :learned, :subjects_id)
-    end
+    params.require(:card).permit(:title, :question, :answer, :answer_notes, :learned, :subjects_id)
 end
+end
+
+

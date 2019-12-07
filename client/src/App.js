@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Cards from './components/Cards'
 
+
 import {
   createCard,
   readAllCards,
@@ -23,6 +24,7 @@ import './App.css';
 import Header from './components/Header';
 import Subjects from './components/Subjects';
 import EditSubject from './components/EditSubject';
+import EditCard from './components/EditCard'
 
 class App extends Component {
   constructor(props) {
@@ -44,12 +46,18 @@ class App extends Component {
         description: ""
       },
       createCardData: {
+        title: "",
         question: "",
-        answer: ""
+        answer: "",
+        answer_notes: "",
+        learned: false
       },
       editCardData: {
-        queston: "",
-        answer: ""
+        title: "",
+        question: "",
+        answer: "",
+        answer_notes: "",
+        learned: false
       },
 
       subjects: [],
@@ -78,12 +86,12 @@ class App extends Component {
   }
 
 
-  getCards = async () => {
+  getCards = async (id) => {
     const cards = await readAllCards(this.state.currentUser.id)
     this.setState({
       cards
     })
-    this.props.history.push("/cards")
+    this.props.history.push(`/subjects/${id}/cards`)
   }
 
 
@@ -132,19 +140,22 @@ class App extends Component {
       subjects: [...prevState.subjects, subject],
       createSubjectData: {
         title: "",
-        description: ''
+        description: ""
       }
     }));
   }
 
   //Create card
-  handleCardSubmit = async () => {
-    const card = await createCard(this.state.createCardData)
+  handleCardSubmit = async (subjectId) => {
+    const card = await createCard(subjectId, this.state.createCardData)
     this.setState(prevState => ({
       cards: [...prevState.cards, card],
       createCardData: {
         title: "",
-        description: ''
+        question: "",
+        answer: "",
+        answer_notes: "",
+        learned: false
       }
     }));
   }
@@ -239,11 +250,32 @@ class App extends Component {
     }))
   }
 
+  handleCreateCardChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      createCardData: {
+        ...prevState.createCardData,
+        [name]: value
+      }
+    }))
+  }
+
+
   handleEditSubjectChange = async (ev) => {
     const { name, value } = ev.target
     this.setState(prevState => ({
       editSubjectData: {
         ...prevState.editSubjectData,
+        [name]: value
+      }
+    }))
+  }
+
+  handleEditCardChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      editCardData: {
+        ...prevState.editCardData,
         [name]: value
       }
     }))
@@ -281,15 +313,28 @@ class App extends Component {
               />
             }}
             />
-            <Route exact path="/subjects/:id/cards" render={(props) => (
-              <Cards
+            <Route exact path="/subjects/:id/cards" render={(props) => {
+              const subjectId = props.match.params.id
+              return <Cards
+                subjectId={subjectId}
                 cards={this.state.cards}
                 handleCardDelete={this.handleCardDelete}
                 handleCardSubmit={this.handleCardSubmit}
                 createCardData={this.state.createCardData}
                 handleChange={this.handleCreateCardChange}
               />
-            )} />
+            }} />
+            <Route exact path="/subjects/:id/cards/:id/edit" render={(props) => {
+              const cardId = props.match.params.id
+              return <EditCard
+                subjectId={cardId}
+                editCardData={this.state.editCardData}
+                handleChange={this.handleEditCardChange}
+                handleEditSubmit={this.handleCardEditSubmit}
+                mountEditForm={this.mountCardEditForm}
+              />
+            }}
+            />
 
           </>
 

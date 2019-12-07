@@ -62,13 +62,14 @@ export const destroySubject = async (id) => {
 // -------------Cards---------------------
 
 
-export const createCard = async (data) => {
-  const resp = await api.post('/cards', { card: data })
+export const createCard = async (subject_id, data) => {
+  // debugger;
+  const resp = await api.post(`subjects/${subject_id}/cards`, data)
   return resp.data
 }
 
-export const readAllCards = async () => {
-  const resp = await api.get('/cards')
+export const readAllCards = async (id) => {
+  const resp = await api.get(`subjects/${id}/cards`)
   return resp.data
 }
 
