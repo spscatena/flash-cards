@@ -18,7 +18,7 @@ body {
 #subject-card {
   border: 2px solid black;
   width: 30vw;
-  height: 10vw;
+  height: 15vw;
   margin: 0 auto;
 
 }
@@ -42,4 +42,36 @@ button {
 
 a {
 text-decoration: none;
+}
+
+#card-container {
+  margin-top: 3vh;
+  /* height: auto; */
+  /* border: 2px solid orange; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 3vh;
+}
+
+#card {
+  border: 2px solid black;
+  width: 30vw;
+  height: 15vw;
+  margin: 0 auto;
+}
+
+header {
+  border: 2px solid black;
+  display: flex;
+}
+
+#add-subject-form {
+  border: 2px solid blue;
+  margin-top: 2vh;
+}
+
+#logout {
+  width: 2vw;
+  height: 5vh;
+  /* border: none; */
 }
