@@ -62,9 +62,9 @@ export const destroySubject = async (id) => {
 // -------------Cards---------------------
 
 
-export const createCard = async (subject_id, data) => {
+export const createCard = async (subjectId, data) => {
   // debugger;
-  const resp = await api.post(`subjects/${subject_id}/cards`, data)
+  const resp = await api.post(`subjects/${subjectId}/cards`, data)
   return resp.data
 }
 
@@ -73,12 +73,12 @@ export const readAllCards = async (id) => {
   return resp.data
 }
 
-export const updateCard = async (id, data) => {
-  const resp = await api.put(`/cards/${id}`, data)
+export const updateCard = async (subjectId, cardId, data) => {
+  const resp = await api.put(`subjects/${subjectId}/cards/${cardId}`, data)
   return resp.data
 }
 
-export const destroyCard = async (id) => {
-  const resp = await api.delete(`/cards/${id}`)
+export const destroyCard = async (subjectId, cardId) => {
+  const resp = await api.delete(`subjects/${subjectId}/cards/${cardId}`)
   return resp.data
 }

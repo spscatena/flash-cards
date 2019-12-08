@@ -1,36 +1,94 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { readAllCards, updateCard } from '../services/api-helper'
 
-export default function EditCard(props) {
-  if (props.editCardData.id !== parseInt(props.cardId)) {
-    props.mountCardEditForm(props.cardId)
+export default class EditCard extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: {
+        id: "",
+        title: "",
+        question: "",
+        answer: "",
+        answer_notes: "",
+        learned: false
+      }
+    }
   }
 
-  return (
-    <div>
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.handleCardEditSubmit(props.cardId);
-      }}>
-        <label htmlFor="question">Question Title</label>
-        <input
-          type="text"
-          name="question"
-          id="question"
-          value={props.editCardData.title}
-          onChange={props.handleChange}
-        />
-        <br />
-        <label htmlFor="answer">Answer Description</label>
-        <input
-          type="text"
-          name="answer"
-          id="answer"
-          value={props.editCardData.description}
-          onChange={props.handleChange}
-        />
-        <br />
-        <button>Submit</button>
-      </form>
-    </div>
-  )
+  async componentDidMount() {
+    debugger
+    if (this.state.data.id !== parseInt(this.props.cardId)) {
+      const cards = await readAllCards(this.props.subjectId);
+      const card = cards.find(el => el.id === parseInt(this.props.cardId));
+      this.setState({
+        data: card
+      });
+    }
+  }
+
+  handleChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      data: {
+        ...prevState.data,
+        [name]: value
+      }
+    }))
+  }
+
+  handleSubmit = async () => {
+    await updateCard(this.props.subjectId, this.props.cardId, this.state.data);
+    this.props.history.push(`/subjects/${this.props.subjectId}/cards`);
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          this.handleSubmit();
+        }}>
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={this.state.data.title}
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="question">Question</label>
+          <input
+            type="text"
+            name="question"
+            id="question"
+            value={this.state.data.question}
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="answer">Answer</label>
+          <input
+            type="text"
+            name="answer"
+            id="answer"
+            value={this.state.data.answer}
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="title">Answers Notes</label>
+          <input
+            type="text"
+            name="answer_notes"
+            id="answer_notes"
+            value={this.state.data.answer_notes}
+            onChange={this.handleChange}
+          />
+          <br />
+          <button>Submit</button>
+        </form>
+      </div>
+    )
+  }
 }
