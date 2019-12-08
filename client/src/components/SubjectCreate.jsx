@@ -1,31 +1,62 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function SubjectCreate(props) {
+export default class SubjectCreate extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      createSubjectData: {
+        title: "",
+        description: ""
+      },
+    }
+  }
 
-  return (
-    <div id="add-subject-form">
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.handleSubjectSubmit();
-      }}
-      >
-        <input
-          type="text"
-          onChange={props.handleChange}
-          name="title"
-          placeholder="Subject Title"
-          id="title"
-          value={props.createSubjectData.title}
-        />
-        <input type="text"
-          onChange={props.handleChange}
-          name="description"
-          placeholder="Subject Description"
-          id="description"
-          value={props.createSubjectData.description}
-        />
-        <input type="submit" value="Add Subject" />
-      </form>
-    </div>
-  )
+  handleSubmit = async () => {
+    this.props.handleCreate(this.state.createSubjectData)
+    this.setState(prevState => ({
+      createSubjectData: {
+        title: "",
+        description: ""
+      }
+    }));
+  }
+
+  handleChange = async (ev) => {
+    const { name, value } = ev.target
+    this.setState(prevState => ({
+      createSubjectData: {
+        ...prevState.createSubjectData,
+        [name]: value
+      }
+    }))
+  }
+
+  render() {
+    return (
+      <div id="add-subject-form">
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          this.handleSubmit();
+        }}
+        >
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="title"
+            placeholder="Subject Title"
+            id="title"
+            value={this.state.createSubjectData.title}
+          />
+          <input type="text"
+            onChange={this.handleChange}
+            name="description"
+            placeholder="Subject Description"
+            id="description"
+            value={this.state.createSubjectData.description}
+          />
+          <input type="submit" value="Add Subject" />
+        </form>
+      </div>
+    )
+  }
 }

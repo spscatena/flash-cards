@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
 
   # GET /users/<user_id>/subjects
   def index
-    @subjects = @current_user.subjects
+    @subjects = @current_user.subjects.order(:created_at)
     render json: @subjects, include: :user, status: :ok
   end
 

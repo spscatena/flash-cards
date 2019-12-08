@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
 import CardCreate from "./CardCreate"
 import { Link } from 'react-router-dom';
-import { createCard, readAllCards, destroyCard } from '../services/api-helper'
+import { createCard, destroyCard, getSubject } from '../services/api-helper'
 
 
 export default class Cards extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cards: []
+      cards: [],
+      subjectTitle: ""
     }
   }
 
   async componentDidMount() {
-    const cards = await readAllCards(this.props.subjectId)
+    const subject = await getSubject(this.props.subjectId)
     this.setState({
-      cards
+      cards: subject.cards,
+      subjectTitle: subject.title
     })
   }
 
@@ -42,6 +44,8 @@ export default class Cards extends Component {
         />
 
         <Link to='/subjects'>Return to My Subjects</Link>
+
+        <p>{this.state.subjectTitle}</p>
 
         <div id="card-container">
           {this.state.cards.map(card => (

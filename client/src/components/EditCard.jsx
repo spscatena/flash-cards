@@ -7,7 +7,6 @@ export default class EditCard extends Component {
     super(props)
     this.state = {
       data: {
-        id: "",
         title: "",
         question: "",
         answer: "",
@@ -18,14 +17,11 @@ export default class EditCard extends Component {
   }
 
   async componentDidMount() {
-    debugger
-    if (this.state.data.id !== parseInt(this.props.cardId)) {
-      const cards = await readAllCards(this.props.subjectId);
-      const card = cards.find(el => el.id === parseInt(this.props.cardId));
-      this.setState({
-        data: card
-      });
-    }
+    const cards = await readAllCards(this.props.subjectId);
+    const card = cards.find(el => el.id === parseInt(this.props.cardId));
+    this.setState({
+      data: card
+    });
   }
 
   handleChange = async (ev) => {

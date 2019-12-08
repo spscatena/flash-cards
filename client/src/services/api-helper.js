@@ -48,6 +48,11 @@ export const readAllSubjects = async (id) => {
   return resp.data
 }
 
+export const getSubject = async (id) => {
+  const resp = await api.get(`/subjects/${id}`)
+  return resp.data
+}
+
 export const putSubject = async (id, data) => {
   const resp = await api.put(`/subjects/${id}`, data)
   return resp.data

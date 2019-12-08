@@ -4,18 +4,7 @@ import { withRouter } from 'react-router';
 import Login from './components/Login'
 import Register from './components/Register'
 import Cards from './components/Cards'
-
-
-import {
-  putSubject,
-  destroySubject,
-  readAllSubjects,
-  createSubject,
-  loginUser,
-  registerUser,
-  verifyUser
-} from './services/api-helper'
-
+import { loginUser, registerUser, verifyUser } from './services/api-helper'
 import './App.css';
 import Header from './components/Header';
 import Subjects from './components/Subjects';
@@ -27,19 +16,12 @@ class App extends Component {
     super(props);
     this.state = {
       currentUser: null,
+      subjects: [],
       authFormData: {
         username: "",
         password: ""
       },
-      editSubjectData: {
-        title: "",
-        description: ""
-      },
-      createSubjectData: {
-        title: "",
-        description: ""
-      },
-      subjects: []
+
     }
   }
 
@@ -48,57 +30,12 @@ class App extends Component {
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser })
-      this.getSubjects();
     } else {
       this.props.history.push("/login")
     }
   }
 
-  getSubjects = async () => {
-    const subjects = await readAllSubjects(this.state.currentUser.id)
-    this.setState({
-      subjects
-    })
-    // this.props.history.push("/subjects")
-  }
 
-  handleSubjectDelete = async (id) => {
-    await destroySubject(id);
-    this.setState(prevState => ({
-      subjects: prevState.subjects.filter(subject => subject.id !== parseInt(id))
-    }))
-  }
-
-  // when the submit button is pressed
-  handleEditSubmit = async (id) => {
-    const updatedSubject = await putSubject(id, this.state.editSubjectData);
-    this.setState(prevState => ({
-      subjects: prevState.subjects.map(subject => {
-        return subject.id === parseInt(id) ? updatedSubject : subject
-      })
-    }));
-    this.props.history.push(`/subjects`);
-  }
-
-  // Create subject
-  handleSubjectSubmit = async () => {
-    const subject = await createSubject(this.state.createSubjectData)
-    this.setState(prevState => ({
-      subjects: [...prevState.subjects, subject],
-      createSubjectData: {
-        title: "",
-        description: ""
-      }
-    }));
-  }
-
-  mountEditForm = async (id) => {
-    const subjects = await readAllSubjects();
-    const subject = subjects.find(el => el.id === parseInt(id));
-    this.setState({
-      editSubjectData: subject
-    });
-  }
 
   // -------------- AUTH ------------------
 
@@ -119,7 +56,7 @@ class App extends Component {
         password: ""
       }
     });
-    this.getSubjects();
+    this.props.history.push("/subjects")
   }
 
   handleRegister = async (e) => {
@@ -153,29 +90,6 @@ class App extends Component {
     }));
   }
 
-
-  // MOVE THIS TO THE ABOVE? MAKE SURE. 
-
-  handleCreateSubjectChange = async (ev) => {
-    const { name, value } = ev.target
-    this.setState(prevState => ({
-      createSubjectData: {
-        ...prevState.createSubjectData,
-        [name]: value
-      }
-    }))
-  }
-
-  handleEditSubjectChange = async (ev) => {
-    const { name, value } = ev.target
-    this.setState(prevState => ({
-      editSubjectData: {
-        ...prevState.editSubjectData,
-        [name]: value
-      }
-    }))
-  }
-
   render() {
     return (
       <div className="App" >
@@ -189,21 +103,14 @@ class App extends Component {
             />
             <Route exact path="/subjects" render={(props) => (
               <Subjects
-                subjects={this.state.subjects}
-                handleSubjectDelete={this.handleSubjectDelete}
-                handleSubjectSubmit={this.handleSubjectSubmit}
-                createSubjectData={this.state.createSubjectData}
-                handleChange={this.handleCreateSubjectChange}
+                userId={this.state.currentUser.id}
               />
             )} />
             <Route exact path="/subjects/:id/edit" render={(props) => {
               const subjectId = props.match.params.id
               return <EditSubject
                 subjectId={subjectId}
-                editSubjectData={this.state.editSubjectData}
-                handleChange={this.handleEditSubjectChange}
-                handleEditSubmit={this.handleEditSubmit}
-                mountEditForm={this.mountEditForm}
+                history={this.props.history}
               />
             }}
             />
