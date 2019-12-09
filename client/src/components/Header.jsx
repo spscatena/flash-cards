@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom'
 
 export default function Header(props) {
   return (
-    <header>
+    <div id="header">
+      <div id="header-left">
       <h1><Link to='/subjects'>Flashcards</Link></h1>
-      {/* <div> */}
-      <p>Welcome {props.currentUser.username.toUpperCase()}</p>
-      {/* <button id="logout" onClick={props.handleLogout}>logout</button> */}
-      <Link to='/login'onClick={props.handleLogout}>LOGOUT</Link>
-      {/* </div> */}
-    </header>
+      <p id="welcome">Welcome {props.currentUser.username.toUpperCase()}</p>
+      </div>
+        <Link to='/login' id="login-out" onClick={props.handleLogout}>Logout</Link>
+    </div>
   )
 }
 

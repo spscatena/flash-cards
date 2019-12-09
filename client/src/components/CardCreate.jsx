@@ -40,7 +40,7 @@ export default class CardCreate extends Component {
 
   render() {
     return (
-      <div>
+      <div id="add-card-form">
         <form onSubmit={(e) => {
           e.preventDefault();
           this.handleSubmit(this.props.subjectId);

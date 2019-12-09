@@ -35,10 +35,10 @@ export default class Subjects extends Component {
       }))
     }
   }
-  
+
   render() {
     return (
-      <div>
+      <div className="subject-card-page">
         <SubjectCreate
           handleCreate={this.handleCreate}
         />
@@ -47,8 +47,8 @@ export default class Subjects extends Component {
           {this.state.subjects.map(subject => (
             <div>
               <div id="subject-card" key={subject.id}>
-                <p>Subject: {subject.title}</p>
-                <p>Description: {subject.description}</p>
+                <p>Subject:<span className="handwriting"> {subject.title}</span></p>
+                <p>Description:<span className="handwriting"> {subject.description}</span></p>
               </div>
               <div>
                 <button onClick={() => this.handleSubjectDelete(subject.id)}>Delete</button>
@@ -59,7 +59,7 @@ export default class Subjects extends Component {
           ))}
 
         </div>
-      </div>
+        </div>
     )
   }
 }

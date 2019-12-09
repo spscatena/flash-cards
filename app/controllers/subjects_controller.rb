@@ -14,6 +14,7 @@ class SubjectsController < ApplicationController
   def show
     @subject = Subject.find(params[:id])
     @cards = Card.where(subject_id: @subject.id)
+    @subject.cards_learned = @cards.select{|card| card.learned == true}.size
     render json: @subject, include: [:cards, :user], status: :ok
   end
 

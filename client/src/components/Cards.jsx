@@ -35,6 +35,11 @@ export default class Cards extends Component {
     }))
   }
 
+  handleCheckboxChange = async (ev) => {
+    alert(ev.target.checked)
+
+  }
+
   render() {
     return (
       <div>
@@ -42,23 +47,23 @@ export default class Cards extends Component {
           subjectId={this.props.subjectId}
           handleCreate={this.handleCreate}
         />
-
+        <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em" }}>{this.state.subjectTitle}</span></p>
         <Link to='/subjects'>Return to My Subjects</Link>
-
-        <p>{this.state.subjectTitle}</p>
 
         <div id="card-container">
           {this.state.cards.map(card => (
             <div>
               <div id="card" key={card.id}>
-                <p>Title: {card.title}</p>
-                <p>Question: {card.question}</p>
-                <p>Answer: {card.answer}</p>
-                <p>Answer Notes {card.answer_notes}</p>
+                <p>Title: <span className="handwriting">{card.title}</span></p>
+                <p>Question: <span className="handwriting">{card.question}</span></p>
+                <p>Answer: <span className="handwriting">{card.answer}</span></p>
+                <p>Answer Notes: <span className="handwriting">{card.answer_notes}</span></p>
               </div>
               <div>
                 <button onClick={() => this.handleDelete(this.props.subjectId, card.id)}>Delete</button>
                 <button><Link to={`/subjects/${this.props.subjectId}/cards/${card.id}/edit`}>Edit </Link></button>
+                {/* <input type="checkbox" id={card.id} value="learned" checked={card.learned} onChange={this.handleCheckboxChange} />Learned */}
+
               </div>
             </div>
           ))}

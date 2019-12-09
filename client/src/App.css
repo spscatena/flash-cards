@@ -2,17 +2,33 @@ body {
   text-align: center;
 }
 
+/* This is the entire page */
 .auth-container{
-  background: white;
+  background: url("https://thumbs.dreamstime.com/b/complex-math-arithmetic-chalkboard-background-statistics-someone-who-smart-brains-can-solve-problems-109294371.jpg");
   height: 100vh;
   display: flex;
 }
 
+/* This is the login/reg box */
 .auth-form {
   background: white;
-  width: 30%;
+  width: 28%;
+  height: 35vh;
   border: 5px solid black;
   margin: auto;
+}
+
+#add-subject-form {
+  border: 2px solid blue;
+  margin: 0 auto;
+  width: 40vw;
+  height: 10vh;
+}
+
+#add-card-form {
+  border: 2px solid blue;
+  margin-top: 3vh;
+  margin-bottom: 4vh;
 }
 
 #subject-card {
@@ -20,6 +36,7 @@ body {
   width: 30vw;
   height: 15vw;
   margin: 0 auto;
+  background-color: white;
 
 }
 
@@ -32,11 +49,21 @@ body {
   grid-row-gap: 3vh;
 }
 
+.subject-card-page {
+  background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
+}
+
+
+
 button {
   color: black;
   width: 50px;
   border-radius: 3px;
   margin: 3px;
+}
+
+.login-reg-button{
+  width: 6em;
 }
 
 
@@ -60,18 +87,63 @@ text-decoration: none;
   margin: 0 auto;
 }
 
-header {
-  border: 2px solid black;
+#header {
   display: flex;
+  height: auto;
+  justify-content: space-between;
+  /* opacity: .2; */
+  z-index: -1;
+  /* position: absolute; */
+  background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
+border-bottom: 10px solid black;
 }
 
-#add-subject-form {
-  border: 2px solid blue;
-  margin-top: 2vh;
+
+
+#login-out {
+  /* width: 2vw;
+  height: 5vh; */
+  /* border: 2px solid gold; */
+  justify-content: flex-end;
+  margin-right: 2em;
+  padding-top: 3vw;
+  text-decoration: none;
+  color: white;
 }
 
-#logout {
-  width: 2vw;
-  height: 5vh;
-  /* border: none; */
+h1 {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 4.5px;
+  font-size: 4em;
+  /* border: 2px solid red; */
+  height: 80px;
+  margin: 0;
+}
+
+h1 a {
+  color: white;
+}
+
+#welcome {
+  text-align: center;
+  /* border: 2px solid red; */
+  color: white;
+}
+
+#header-left {
+  margin-left: 1em;
+}
+
+#subject-label {
+  font-family: 'Shadows Into Light', cursive; 
+
+}
+
+.subject-card {
+  font-family: 'Kalam', cursive;
+}
+
+.handwriting {
+  font-family: 'Kalam', cursive;
+
 }
