@@ -41,6 +41,7 @@ export default class CardCreate extends Component {
   render() {
     return (
       <div id="add-card-form">
+        <p><span style={{ color: "white", fontSize: 28, }}>Add a Card</span></p>
         <form onSubmit={(e) => {
           e.preventDefault();
           this.handleSubmit(this.props.subjectId);

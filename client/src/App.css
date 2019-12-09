@@ -1,5 +1,7 @@
 body {
   text-align: center;
+  background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
+
 }
 
 /* This is the entire page */
@@ -18,17 +20,43 @@ body {
   margin: auto;
 }
 
+/* Landing page above */
+
+/* Add a Subject form */
+
 #add-subject-form {
-  border: 2px solid blue;
+  border: 2px solid transparent;
   margin: 0 auto;
   width: 40vw;
   height: 10vh;
 }
 
+#form-subject-title {
+  /* background-color: blue; */
+  width: 15em;
+  height: 2em;
+}
+
+#form-subject-description{
+  width: 25em;
+  height: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+
+}
+
+/* Add a Subject form above */
+
+
+
+
 #add-card-form {
   border: 2px solid blue;
-  margin-top: 3vh;
-  margin-bottom: 4vh;
+  /* margin-top: 3vh;
+  margin-bottom: 4vh; */
+  margin: 0 auto;
+  width: 40vw;
+  height: 10vh;
 }
 
 #subject-card {
@@ -40,19 +68,31 @@ body {
 
 }
 
+#card {
+  border: 2px solid black;
+  width: 30vw;
+  height: 15vw;
+  margin: 0 auto;
+  background-color: white;
+
+}
+
 #subject-container {
   margin-top: 3vh;
-  /* height: auto; */
+  height: auto;
   /* border: 2px solid orange; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 3vh;
 }
 
-.subject-card-page {
+#subject-page {
   background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
 }
 
+#card-page {
+  background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
+}
 
 
 button {
@@ -80,22 +120,17 @@ text-decoration: none;
   grid-row-gap: 3vh;
 }
 
-#card {
-  border: 2px solid black;
-  width: 30vw;
-  height: 15vw;
-  margin: 0 auto;
-}
+
 
 #header {
   display: flex;
-  height: auto;
+  height: 0;
   justify-content: space-between;
   /* opacity: .2; */
-  z-index: -1;
   /* position: absolute; */
-  background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg');
-border-bottom: 10px solid black;
+  background-color: rgb(2, 2, 2);
+  /* background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg'); */
+/* border-bottom: 10px solid black; */
 }
 
 
@@ -104,9 +139,9 @@ border-bottom: 10px solid black;
   /* width: 2vw;
   height: 5vh; */
   /* border: 2px solid gold; */
-  justify-content: flex-end;
-  margin-right: 2em;
-  padding-top: 3vw;
+  /* justify-items: left; */
+  /* margin-right: 5em; */
+  padding-top: 1vw;
   text-decoration: none;
   color: white;
 }
@@ -115,8 +150,8 @@ h1 {
   font-family: 'Bangers', cursive;
   letter-spacing: 4.5px;
   font-size: 4em;
-  /* border: 2px solid red; */
-  height: 80px;
+  /* border: 2px solid red;   */
+  /* height: 80px; */
   margin: 0;
 }
 
@@ -125,14 +160,24 @@ h1 a {
 }
 
 #welcome {
-  text-align: center;
   /* border: 2px solid red; */
   color: white;
+  height: auto;
 }
 
 #header-left {
   margin-left: 1em;
+  
 }
+
+#header-right {
+  /* border: 2px solid blue; */
+  /* justify-content: flex-start; */
+  margin-right: 1em;
+
+}
+
+
 
 #subject-label {
   font-family: 'Shadows Into Light', cursive; 
@@ -147,3 +192,4 @@ h1 a {
   font-family: 'Kalam', cursive;
 
 }
+

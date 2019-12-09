@@ -38,7 +38,7 @@ export default class Subjects extends Component {
 
   render() {
     return (
-      <div className="subject-card-page">
+      <div id="subject-page">
         <SubjectCreate
           handleCreate={this.handleCreate}
         />

@@ -35,21 +35,21 @@ export default class Cards extends Component {
     }))
   }
 
-  handleCheckboxChange = async (ev) => {
-    alert(ev.target.checked)
+  // handleCheckboxChange = async (ev) => {
+  //   alert(ev.target.checked)
 
-  }
+  // }
 
   render() {
     return (
-      <div>
+      <div id="card-page">
         <CardCreate
           subjectId={this.props.subjectId}
           handleCreate={this.handleCreate}
         />
-        <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em" }}>{this.state.subjectTitle}</span></p>
-        <Link to='/subjects'>Return to My Subjects</Link>
+        <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em", color: "white" }}>{this.state.subjectTitle}</span></p>
 
+        <Link to='/subjects' style={{ color: "white" }}>Return to My Subjects</Link>
         <div id="card-container">
           {this.state.cards.map(card => (
             <div>

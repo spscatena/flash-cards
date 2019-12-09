@@ -5,14 +5,15 @@ export default function Header(props) {
   return (
     <div id="header">
       <div id="header-left">
-      <h1><Link to='/subjects'>Flashcards</Link></h1>
-      <p id="welcome">Welcome {props.currentUser.username.toUpperCase()}</p>
+        <h1><Link to='/subjects'>Flashcards</Link></h1>
       </div>
+      <div id="header-right">
+        <p id="welcome">Welcome {props.currentUser.username.toUpperCase()}</p>
         <Link to='/login' id="login-out" onClick={props.handleLogout}>Logout</Link>
+      </div>
     </div>
   )
 }
 
 
 
-{/* <h1><Link to='/' onClick={props.resetForm}>Flashcards</Link></h1> */ }
