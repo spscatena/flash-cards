@@ -43,10 +43,10 @@ export default class Cards extends Component {
   render() {
     return (
       <div id="card-page">
-        <CardCreate
+        {/* <CardCreate
           subjectId={this.props.subjectId}
           handleCreate={this.handleCreate}
-        />
+        /> */}
         <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em", color: "white" }}>{this.state.subjectTitle}</span></p>
 
         <Link to='/subjects' style={{ color: "white" }}>Return to My Subjects</Link>
@@ -54,10 +54,10 @@ export default class Cards extends Component {
           {this.state.cards.map(card => (
             <div>
               <div id="card" key={card.id}>
-                <p>Title: <span className="handwriting">{card.title}</span></p>
+                {/* <p>Title: <span className="handwriting">{card.title}</span></p> */}
                 <p>Question: <span className="handwriting">{card.question}</span></p>
                 <p>Answer: <span className="handwriting">{card.answer}</span></p>
-                <p>Answer Notes: <span className="handwriting">{card.answer_notes}</span></p>
+                {/* <p>Answer Notes: <span className="handwriting">{card.answer_notes}</span></p> */}
               </div>
               <div>
                 <button onClick={() => this.handleDelete(this.props.subjectId, card.id)}>Delete</button>
@@ -67,6 +67,11 @@ export default class Cards extends Component {
               </div>
             </div>
           ))}
+          <CardCreate
+            subjectId={this.props.subjectId}
+            handleCreate={this.handleCreate}
+          />
+
         </div>
       </div>
     )

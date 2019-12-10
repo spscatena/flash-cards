@@ -39,10 +39,6 @@ export default class Subjects extends Component {
   render() {
     return (
       <div id="subject-page">
-        <SubjectCreate
-          handleCreate={this.handleCreate}
-        />
-
         <div id="subject-container">
           {this.state.subjects.map(subject => (
             <div>
@@ -57,9 +53,11 @@ export default class Subjects extends Component {
               </div>
             </div>
           ))}
-
+          <SubjectCreate
+            handleCreate={this.handleCreate}
+          />
         </div>
-        </div>
+      </div>
     )
   }
 }

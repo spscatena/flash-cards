@@ -33,30 +33,37 @@ export default class SubjectCreate extends Component {
 
   render() {
     return (
-      <div id="add-subject-form">
-        <p><span style={{ color: "white", fontSize: 28, }}>Add a Subject</span></p>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          this.handleSubmit();
-        }}
-        >
-          <input
-            id="form-subject-title"
-            type="text"
-            onChange={this.handleChange}
-            name="title"
-            placeholder="Subject Title"
-            value={this.state.createSubjectData.title}
-          />
-          <input type="text"
-            id="form-subject-description"
-            onChange={this.handleChange}
-            name="description"
-            placeholder="Subject Description"
-            value={this.state.createSubjectData.description}
-          />
-          <input type="submit" value="Add Subject" />
-        </form>
+      <div>
+        <div id="add-subject-form">
+          <p><span style={{ color: "white", fontSize: 28, }}>Add a Subject</span></p>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            this.handleSubmit();
+          }}
+          >
+            <div className="form">
+            <input
+              id="form-subject-title"
+              type="text"
+              onChange={this.handleChange}
+              name="title"
+              placeholder="Subject Title"
+              value={this.state.createSubjectData.title}
+            />
+            <textarea
+              type="text"
+              id="form-subject-description"
+              onChange={this.handleChange}
+              name="description"
+              placeholder="Subject Description"
+              value={this.state.createSubjectData.description}
+              />
+              </div>
+            <div>
+              <input type="submit" value="Add Subject" />
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

@@ -25,38 +25,52 @@ body {
 /* Add a Subject form */
 
 #add-subject-form {
-  border: 2px solid transparent;
+  border: 2px solid white;
   margin: 0 auto;
-  width: 40vw;
-  height: 10vh;
+  width: 30vw;
+  height: 15vw;
+
+  /* background-color: white; */
+}
+
+textarea {
+ font-family: "Kalam", cursive;
+}
+
+input {
+  font-family: "Kalam", cursive;
+ }
+
+
+.form {
+  height: 10em; 
 }
 
 #form-subject-title {
   /* background-color: blue; */
+  margin-bottom: 1em;
   width: 15em;
   height: 2em;
 }
 
 #form-subject-description{
-  width: 25em;
-  height: 2em;
+  width: 37em;
+  height: 10em;
   margin-left: 1em;
   margin-right: 1em;
+  /* word-wrap: normal; */
 
 }
 
 /* Add a Subject form above */
 
-
-
-
 #add-card-form {
-  border: 2px solid blue;
+  border: 2px solid white;
   /* margin-top: 3vh;
   margin-bottom: 4vh; */
   margin: 0 auto;
-  width: 40vw;
-  height: 10vh;
+  width: 30vw;
+  height: 15vw;
 }
 
 #subject-card {
@@ -65,8 +79,10 @@ body {
   height: 15vw;
   margin: 0 auto;
   background-color: white;
-
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
 
 #card {
   border: 2px solid black;
@@ -78,7 +94,7 @@ body {
 }
 
 #subject-container {
-  margin-top: 3vh;
+  margin-top: 15vh;
   height: auto;
   /* border: 2px solid orange; */
   display: grid;
@@ -171,12 +187,9 @@ h1 a {
 }
 
 #header-right {
-  /* border: 2px solid blue; */
-  /* justify-content: flex-start; */
   margin-right: 1em;
 
 }
-
 
 
 #subject-label {
@@ -184,12 +197,27 @@ h1 a {
 
 }
 
-.subject-card {
+.handwriting {
   font-family: 'Kalam', cursive;
 }
 
-.handwriting {
-  font-family: 'Kalam', cursive;
+/* card form */
 
+#card-form {
+  width: 100%x;
+  margin: 0 auto;
+  /* border: 2px solid blue; */
+  padding-top: 0;
+
+}
+
+#question {
+  width: 450px;
+  margin-bottom: 2px;
+}
+
+#answer {
+  width: 450px;
+  height: 130px;
 }
 

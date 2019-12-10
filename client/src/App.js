@@ -69,6 +69,7 @@ class App extends Component {
         password: ""
       }
     });
+    this.props.history.push("/subjects")
   }
 
   handleLogout = () => {
