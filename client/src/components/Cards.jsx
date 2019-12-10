@@ -49,21 +49,26 @@ export default class Cards extends Component {
         /> */}
         <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em", color: "white" }}>{this.state.subjectTitle}</span></p>
 
-        <Link to='/subjects' style={{ color: "white" }}>Return to My Subjects</Link>
+        <Link to='/subjects' style={{ color: "white", fontSize: "1.5em" }}>Return to My Subjects</Link>
         <div id="card-container">
           {this.state.cards.map(card => (
             <div>
-              <div id="card" key={card.id}>
-                {/* <p>Title: <span className="handwriting">{card.title}</span></p> */}
-                <p>Question: <span className="handwriting">{card.question}</span></p>
-                <p>Answer: <span className="handwriting">{card.answer}</span></p>
-                {/* <p>Answer Notes: <span className="handwriting">{card.answer_notes}</span></p> */}
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div id="card" key={card.id}>
+                    <div className="flip-card-front">
+                      <p id="cards-question"><b>Question: </b> <span className="handwriting">{card.question}</span></p>
+                    </div>
+                    <div className="flip-card-back">
+                      <p id="card-ans"><b>Answer: </b><span className="handwriting">{card.answer}</span></p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <button onClick={() => this.handleDelete(this.props.subjectId, card.id)}>Delete</button>
-                <button><Link to={`/subjects/${this.props.subjectId}/cards/${card.id}/edit`}>Edit </Link></button>
+              <div id="card-buttons">
+                <button className="button-effect" onClick={() => this.handleDelete(this.props.subjectId, card.id)}>Delete</button>
+                <button className="button-effect"><Link to={`/subjects/${this.props.subjectId}/cards/${card.id}/edit`}>Edit </Link></button>
                 {/* <input type="checkbox" id={card.id} value="learned" checked={card.learned} onChange={this.handleCheckboxChange} />Learned */}
-
               </div>
             </div>
           ))}
@@ -73,7 +78,7 @@ export default class Cards extends Component {
           />
 
         </div>
-      </div>
+      </div >
     )
   }
 }

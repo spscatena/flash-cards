@@ -62,6 +62,7 @@ export default class EditCard extends Component {
             id="question"
             value={this.state.data.question}
             onChange={this.handleChange}
+            placeholder="Question"
           />
           <label htmlFor="answer"></label>
           <textarea
@@ -70,6 +71,7 @@ export default class EditCard extends Component {
             id="answer"
             value={this.state.data.answer}
             onChange={this.handleChange}
+            placeholder="Answer"
           />
           {/* <label htmlFor="title">Answers Notes</label>
           <input

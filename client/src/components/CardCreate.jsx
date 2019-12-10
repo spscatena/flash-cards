@@ -48,14 +48,6 @@ export default class CardCreate extends Component {
         }}
         >
           <div id="card-form">
-            {/* <input
-              type="text"
-              onChange={this.handleChange}
-              name="title"
-              placeholder="Card Title"
-              id="title"
-              value={this.state.data.title}
-            /> */}
             <input type="text"
               onChange={this.handleChange}
               name="question"
@@ -70,15 +62,10 @@ export default class CardCreate extends Component {
               id="answer"
               value={this.state.data.answer}
             />
-            {/* <textarea type="text"
-              onChange={this.handleChange}
-              name="answer_notes"
-              placeholder="Answer Notes"
-              id="answer_notes"
-              value={this.state.data.answer_notes}
-            /> */}
           </div>
-          <input id="submit-card-form" type="submit" value="Add Card" />
+          <div id="create-card-buttons">
+            <input id="submit-card-form" type="submit" value="Add Card" />
+          </div>
         </form>
       </div >
     )

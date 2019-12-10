@@ -42,14 +42,15 @@ export default class Subjects extends Component {
         <div id="subject-container">
           {this.state.subjects.map(subject => (
             <div>
+
               <div id="subject-card" key={subject.id}>
-                <p>Subject:<span className="handwriting"> {subject.title}</span></p>
-                <p>Description:<span className="handwriting"> {subject.description}</span></p>
+                <p><b>Subject:</b><span className="handwriting"> {subject.title}</span></p>
+                <p id="sub-desc"><b>Description: </b><span className="handwriting"> {subject.description}</span></p>
               </div>
               <div>
-                <button onClick={() => this.handleSubjectDelete(subject.id)}>Delete</button>
-                <button><Link to={`/subjects/${subject.id}/edit`}>Edit</Link></button>
-                <button><Link to={`/subjects/${subject.id}/cards`}>Cards</Link></button>
+                <button className="button-effect" onClick={() => this.handleSubjectDelete(subject.id)}>Delete</button>
+                <button className="button-effect"><Link to={`/subjects/${subject.id}/edit`}>Edit</Link></button>
+                <button className="button-effect"><Link to={`/subjects/${subject.id}/cards`}>Cards</Link></button>
               </div>
             </div>
           ))}
