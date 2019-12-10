@@ -42,18 +42,18 @@ input {
  }
 
 
-.form {
+#form {
   height: 10em; 
 }
 
-#form-subject-title {
+.form-subject-title {
   /* background-color: blue; */
   margin-bottom: 1em;
   width: 15em;
   height: 2em;
 }
 
-#form-subject-description{
+.form-subject-description{
   width: 37em;
   height: 10em;
   margin-left: 1em;
@@ -78,9 +78,18 @@ input {
   width: 30vw;
   height: 15vw;
   margin: 0 auto;
-  background-color: white;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 10px;
+  /* background-color: white; */
+  /* text-decoration: underline; */
+  /* background: url("https://images-na.ssl-images-amazon.com/images/I/51Tr6e4xMIL._SX466_.jpg") */
+    /* background: url("https://media.istockphoto.com/photos/index-card-picture-id172343230?k=6&m=172343230&s=612x612&w=0&h=WyoE5f2wWJPE8fy00EtxzuYHZOANRAisM4N2X2q6aVA=") */
+    /* background: url("https://littletownschoolandofficesupply.com/sites/default/files/images/products/indexcard.jpg") */
+    /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3eSvFN7S7Yp7LlJtW20Ml3XwnldY4sNFjYjB56ljluiC7eVOw&s") */
+    /* background-image: url('index-card.jpg'); */
+    background-image: url('index_card2.png');
+
 }
 
 
@@ -89,7 +98,12 @@ input {
   width: 30vw;
   height: 15vw;
   margin: 0 auto;
-  background-color: white;
+  /* background-color: white; */
+  /* background: url("https://media.istockphoto.com/photos/index-card-picture-id172343230?k=6&m=172343230&s=612x612&w=0&h=WyoE5f2wWJPE8fy00EtxzuYHZOANRAisM4N2X2q6aVA=") */
+  /* background: url("https://www.gramcoschoolsupplies.com/pub/media/catalog/product/cache/image/1000x1320/e9c3970ab036de70892d86c6d221abfe/9/1/9151.jpg") */
+/* text-decoration: underline; */
+/* background-image: url('index-card.jpg'); */
+background-image: url('index_card2.png');
 
 }
 
@@ -221,3 +235,31 @@ h1 a {
   height: 130px;
 }
 
+/* card form above */
+
+/* Edit subject */
+
+#add-subject-edit-form {
+  border: 2px solid white;
+  margin: auto;
+  margin-top: 10em;
+  width: 30vw;
+  height: 15vw;
+
+  /* background-color: white; */
+}
+
+/* #edit-subject-form {
+  height: 10em; 
+  border: 2px solid blue;
+
+} */
+
+#edit-card-form {
+  border: 2px solid white;
+  margin: 0 auto;
+  width: 30vw;
+  height: 15vw;
+  margin-top: 10em;
+
+}

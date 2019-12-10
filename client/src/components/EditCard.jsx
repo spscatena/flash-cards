@@ -41,21 +41,21 @@ export default class EditCard extends Component {
 
   render() {
     return (
-      <div>
+      <div id="edit-card-form">
+        <p><span style={{ color: "white", fontSize: 19, marginTop: "0" }}>Edit Your Card</span></p>
         <form onSubmit={(e) => {
           e.preventDefault();
           this.handleSubmit();
         }}>
-          <label htmlFor="title">Title</label>
+          {/* <label htmlFor="title">Title</label>
           <input
             type="text"
             name="title"
             id="title"
             value={this.state.data.title}
             onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="question">Question</label>
+          /> */}
+          <label htmlFor="question"></label>
           <input
             type="text"
             name="question"
@@ -63,25 +63,22 @@ export default class EditCard extends Component {
             value={this.state.data.question}
             onChange={this.handleChange}
           />
-          <br />
-          <label htmlFor="answer">Answer</label>
-          <input
+          <label htmlFor="answer"></label>
+          <textarea
             type="text"
             name="answer"
             id="answer"
             value={this.state.data.answer}
             onChange={this.handleChange}
           />
-          <br />
-          <label htmlFor="title">Answers Notes</label>
+          {/* <label htmlFor="title">Answers Notes</label>
           <input
             type="text"
             name="answer_notes"
             id="answer_notes"
             value={this.state.data.answer_notes}
             onChange={this.handleChange}
-          />
-          <br />
+          /> */}
           <button>Submit</button>
         </form>
       </div>

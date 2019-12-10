@@ -41,9 +41,9 @@ export default class SubjectCreate extends Component {
             this.handleSubmit();
           }}
           >
-            <div className="form">
+            <div id="form">
             <input
-              id="form-subject-title"
+              className="form-subject-title"
               type="text"
               onChange={this.handleChange}
               name="title"
@@ -52,7 +52,7 @@ export default class SubjectCreate extends Component {
             />
             <textarea
               type="text"
-              id="form-subject-description"
+              className="form-subject-description"
               onChange={this.handleChange}
               name="description"
               placeholder="Subject Description"

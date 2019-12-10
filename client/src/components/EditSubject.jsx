@@ -49,29 +49,31 @@ export default class EditSubject extends Component {
 
   render() {
     return (
-      <div>
+      <div id="add-subject-edit-form">
+        <p><span style={{ color: "white", fontSize: 26, }}>Edit Your Subject</span></p>
         <form onSubmit={(e) => {
           e.preventDefault();
           this.handleEditSubmit(this.props.subjectId);
-        }}>
-          <label htmlFor="title">Subject Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={this.state.editSubjectData.title}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="description">Subject Description</label>
-          <input
-            type="text"
-            name="description"
-            id="description"
-            value={this.state.editSubjectData.description}
-            onChange={this.handleChange}
-          />
-          <br />
+        }}
+        >
+          <div id="edit-subject-form">
+            <label htmlFor="title"></label>
+            <input
+              className="form-subject-title"
+              type="text"
+              name="title"
+              value={this.state.editSubjectData.title}
+              onChange={this.handleChange}
+            />
+            <label htmlFor="description"></label>
+            <textarea
+              className="form-subject-description"
+              type="text"
+              name="description"
+              value={this.state.editSubjectData.description}
+              onChange={this.handleChange}
+            />
+          </div>
           <button>Submit</button>
         </form>
       </div>
