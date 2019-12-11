@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const baseUrl = 'http://localhost:3000'
-const baseUrl = 'https://flash-cards-api-ss.herokuapp.com'
+const baseUrl = 'http://localhost:3000'
+// const baseUrl = 'https://flash-cards-api-ss.herokuapp.com'
 
 // https://flash-cards-api-ss.herokuapp.com/subjects
 // https://flash-cards-api-ss.herokuapp.com/
