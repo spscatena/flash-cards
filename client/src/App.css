@@ -30,7 +30,6 @@ body {
   width: 30vw;
   height: 15vw;
 
-  /* background-color: white; */
 }
 
 textarea {
@@ -165,9 +164,7 @@ a:link {
 #header {
   display: flex;
   height: 0;
-  justify-content: space-between;
-  /* opacity: .2; */
-  /* position: absolute; */
+  /* justify-content: space-between; */
   background-color: rgb(2, 2, 2);
   /* background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg'); */
 /* border-bottom: 10px solid black; */
@@ -325,9 +322,7 @@ background-image: url('index_card2.png');
 
 /* flip card above */
 
-/* #create-card-buttons {
-  border: 2px solid white;
-} */
+
 
 #card-buttons {
   /* border: 2px solid white; */
@@ -409,3 +404,75 @@ button {
     border-color: black;
     transition: all 0.5s ease 0s;
     }
+
+
+    /* Media below */
+@media only screen and (max-width: 770px) {
+
+ 
+
+  #add-subject-form {
+    border: 2px solid white;
+    margin: 0 auto;
+    width: 2vw;
+    height: 3vw;
+  
+  }
+
+  #subject-container {
+    margin-top: 20vh;
+    height: auto;
+    /* border: 2px solid orange; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 3vh;
+  }
+
+
+  #subject-card {
+    /* border: 2px solid black; */
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    /* padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px; */
+    -webkit-box-shadow: 17px -14px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 17px -14px 13px 0px rgba(0,0,0,0.75);
+    box-shadow: 17px -14px 13px 0px rgba(0,0,0,0.75); 
+    background-color: white;
+   
+  
+  }
+#subject buttons {
+  width: 10%;
+  height: 10%;
+}
+
+  #subject-page {
+    height: 100%; 
+  }
+
+#header-right {
+display: none;
+
+}
+
+#add-subject-form {
+  margin-top: 30%;
+
+}
+
+.form-subject-description {
+
+}
+
+
+#form {
+  width: 50%;
+}
+
+#addsub {
+  display: none;
+}
+}

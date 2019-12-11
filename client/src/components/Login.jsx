@@ -8,7 +8,7 @@ const Login = (props) => {
   return (
     <div className="auth-container">
       <div className="auth-form">
-        <h2>Login into Flashcards</h2>
+        <h2>Sign into Flashcards</h2>
         {/* <hr /> */}
         <form onSubmit={(e) => {
           e.preventDefault();

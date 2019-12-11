@@ -35,7 +35,7 @@ export default class SubjectCreate extends Component {
     return (
       <div>
         <div id="add-subject-form">
-          <p><span style={{ color: "white", fontSize: 28, }}>Add a Subject</span></p>
+          <p id="addsub"><span style={{ color: "white", fontSize: 28, }}>Add a Subject</span></p>
           <form onSubmit={(e) => {
             e.preventDefault();
             this.handleSubmit();

@@ -47,7 +47,7 @@ export default class Subjects extends Component {
                 <p><b>Subject:</b><span className="handwriting"> {subject.title}</span></p>
                 <p id="sub-desc"><b>Description: </b><span className="handwriting"> {subject.description}</span></p>
               </div>
-              <div>
+              <div id="subject buttons">
                 <button className="button-effect" onClick={() => this.handleSubjectDelete(subject.id)}>Delete</button>
                 <button className="button-effect"><Link to={`/subjects/${subject.id}/edit`}>Edit</Link></button>
                 <button className="button-effect"><Link to={`/subjects/${subject.id}/cards`}>Cards</Link></button>
