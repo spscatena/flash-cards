@@ -164,7 +164,7 @@ a:link {
 #header {
   display: flex;
   height: 0;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   background-color: rgb(2, 2, 2);
   /* background: url('https://preventionlane.org/wp-content/uploads/2015/02/blackboard.jpg'); */
 /* border-bottom: 10px solid black; */
@@ -453,10 +453,7 @@ button {
     height: 100%; 
   }
 
-#header-right {
-display: none;
 
-}
 
 #add-subject-form {
   margin-top: 30%;
