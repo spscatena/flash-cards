@@ -44,8 +44,8 @@ export default class Subjects extends Component {
             <div>
 
               <div id="subject-card" key={subject.id}>
-                <p><b>Subject:</b><span className="handwriting"> {subject.title}</span></p>
-                <p id="sub-desc"><b>Description: </b><span className="handwriting"> {subject.description}</span></p>
+                <p><b className="sub-titles">Subject:</b><span className="handwriting"> {subject.title}</span></p>
+                <p id="sub-desc"><b className="sub-titles">Description: </b><span className="handwriting"> {subject.description}</span></p>
               </div>
               <div id="subject buttons">
                 <button className="button-effect" onClick={() => this.handleSubjectDelete(subject.id)}>Delete</button>

@@ -152,6 +152,7 @@ class App extends Component {
                 handleChange={this.authHandleChange}
                 formData={this.state.authFormData}
                 handleLoginButton={this.handleLoginButton}
+                history={this.props.history}
               />)} />
           </>
         }

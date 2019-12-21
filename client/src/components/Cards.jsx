@@ -47,9 +47,9 @@ export default class Cards extends Component {
           subjectId={this.props.subjectId}
           handleCreate={this.handleCreate}
         /> */}
-        <p><span style={{ fontFamily: 'Kalam', fontSize: "2em", paddingLeft: ".2em", color: "white" }}>{this.state.subjectTitle}</span></p>
+        <p><span style={{ fontFamily: 'Kalam', fontSize: "1.8vw", paddingLeft: ".2em", color: "white" }}>{this.state.subjectTitle}</span></p>
 
-        <Link to='/subjects' style={{ color: "white", fontSize: "1.5em" }}>Return to My Subjects</Link>
+        <Link to='/subjects' style={{ color: "white", fontSize: "1.8vw" }}>Return to My Subjects</Link>
         <div id="card-container">
           {this.state.cards.map(card => (
             <div>
@@ -57,10 +57,10 @@ export default class Cards extends Component {
                 <div className="flip-card-inner">
                   <div id="card" key={card.id}>
                     <div className="flip-card-front">
-                      <p id="cards-question"><b>Question: </b> <span className="handwriting">{card.question}</span></p>
+                      <p id="cards-question"><b className="sub-titles" >Question: </b> <span className="handwriting">{card.question}</span></p>
                     </div>
                     <div className="flip-card-back">
-                      <p id="card-ans"><b>Answer: </b><span className="handwriting">{card.answer}</span></p>
+                      <p id="card-ans"><b className="sub-titles" >Answer: </b><span className="handwriting">{card.answer}</span></p>
                     </div>
                   </div>
                 </div>
