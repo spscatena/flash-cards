@@ -60,7 +60,7 @@ export default class SubjectCreate extends Component {
               />
               </div>
             <div>
-              <input type="submit" value="Add Subject" />
+              <input id="input-sub" type="submit" value="Add Subject" />
             </div>
           </form>
         </div>

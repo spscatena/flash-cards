@@ -32,12 +32,18 @@ height: auto;
 
 textarea {
  font-family: "Kalam", cursive;
+ 
  /* font-size: larger; */
 }
 
 input {
   font-family: "Kalam", cursive;
   margin-bottom: 2%; 
+ }
+
+ #input-sub {
+  margin-top: 3%; 
+
  }
 
 
@@ -254,8 +260,8 @@ h1 a {
   border: 2px solid white;
   margin: auto;
   margin-top: 10em;
-  width: 30vw;
-  height: 15vw;
+  width: 30%;
+  height: 20%;
 
   /* background-color: white; */
 }
@@ -269,8 +275,8 @@ h1 a {
 #edit-card-form {
   border: 2px solid white;
   margin: 0 auto;
-  width: 30vw;
-  height: 15vw;
+  width: 30%;
+  height: 15%;
   margin-top: 10em;
 
 }
@@ -291,7 +297,7 @@ h1 a {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.6s;
+  transition: transform 0.5s;
   transform-style: preserve-3d;
   -webkit-box-shadow: 17px -14px 13px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 17px -14px 13px 0px rgba(0,0,0,0.75);
@@ -302,7 +308,11 @@ h1 a {
 
 .flip-card:hover .flip-card-inner {
   transform: rotateX(180deg);
+
 }
+
+
+
 
 .flip-card-front, .flip-card-back{
   position: absolute;
@@ -313,16 +323,20 @@ h1 a {
 }
 
 .flip-card-front {
-background-image: url('index_card2.png');
-  /* color: black; */
-}
+  z-index: 2;
+  background-image: url('index_card2.png');
+  color: black;
 
+  }
+
+
+  
 .flip-card-back {
   background-image: url('index_card2.png');
-  /* opacity: .2; */
-  /* color: black; */
+  color: black;
   transform: rotateX(180deg);
 }
+
 
 /* flip card above */
 
